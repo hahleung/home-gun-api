@@ -1,0 +1,16 @@
+version: '2'
+services:
+  home-gun-api:
+    image: ruby
+    ports:
+      - "8080:8080"
+    links:
+      - postgres
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=homegun
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=homegun
+    ports:
+      - "5431:5432"
