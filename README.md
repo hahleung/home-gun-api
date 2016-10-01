@@ -27,6 +27,12 @@ Running migration schema:
 ```
 PGPASSWORD=pass bundle exec sequel -m database/migrations/ postgres://homegun@`docker-machine ip`:5431/homegun -t
 ```
+or:
+`database/migrate`
+
+Managing database migrations:
+* create migration files in `database/migrations`
+* use Sequel documentation with ruby and postgres helpers
 
 Running trough the database:
 ```
@@ -41,7 +47,10 @@ drop table users;
 ## Run
 
 #### Locally
-WIP
+After launching your containers:
+```
+ruby routes.rb
+```
 
 #### Distant access
 WIP

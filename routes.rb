@@ -1,10 +1,20 @@
 require 'bundler/setup'
-require 'sequel'
-
-DB = Sequel.connect('postgres://homegun:pass@192.168.99.101:5431/homegun')
-
 require 'sinatra'
+require 'json'
+require 'pry'
 
-get '/' do
-  'cool'
+$LOAD_PATH << __dir__
+require 'services/users'
+
+set :port, 3000
+
+post '/users' do
+  name = JSON.parse(request.body.read)["name"]
+  if name
+    Services::Users.save(name)
+    status 201
+  else
+    status 400
+    body "Require a name parameter"
+  end
 end
