@@ -7,4 +7,4 @@ then
   for i in $(cat .env); do export $i; done
 fi
 
-ruby routes.rb
+ruby -I $(dirname $0)/.. routes.rb
