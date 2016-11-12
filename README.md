@@ -16,6 +16,22 @@ eval $(docker-machine env default)
 docker-compose up
 ```
 
+Relaunch:
+```
+docker-machine status
+docker-machine start
+docker ps
+```
+
+Nothing in log? Run: `docker-compose up`
+
+Ip: `docker-machine ip` (don't forget to update `.env`)
+
+If no TLS (SSH) certificate:
+```
+docker-machine regenerate-certs default
+```
+
 #### Killing containers
 ```
 docker ps -q | xargs docker kill
@@ -28,7 +44,7 @@ Running migration schema:
 PGPASSWORD=pass bundle exec sequel -m database/migrations/ postgres://homegun@`docker-machine ip`:5431/homegun -t
 ```
 or:
-`database/migrate`
+`bundle exec database/migrate`
 
 Managing database migrations:
 * create migration files in `database/migrations`
