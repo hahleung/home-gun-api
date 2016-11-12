@@ -3,7 +3,7 @@ Coding an API (training project) serving `home-gun` Android app.
 
 ## Technologies
 * Programming language: ruby 2.3.0
-* Database: postgres with
+* Database: postgres
 * Framework for HTTP requests: Sinatra
 
 ## Installation
@@ -65,15 +65,18 @@ drop table users;
 #### Locally
 After launching your containers:
 ```
-ruby routes.rb
+bin/server
 ```
 
 #### Distant access
 WIP
+
+## Endpoints
+
+WIP: Endpoints description (requirements and response)
 
 #### Tests suite
 WIP
 
 ## Troubleshooting
 WIP
-
