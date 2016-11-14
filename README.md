@@ -80,3 +80,7 @@ WIP
 
 ## Troubleshooting
 WIP
+
+## Rake Tasks
+To see all the available rake tasks, launch `rake -T`
+
