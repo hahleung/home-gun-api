@@ -3,14 +3,17 @@ require 'sinatra'
 require 'sinatra/json'
 require 'json'
 
-require 'services/users'
 require 'exceptions'
+require 'services/kitchen_points'
+require 'services/users'
+require 'parsers/json'
+require 'parsers/kitchen_points'
 
 set :port, 3000
 
 post '/users' do
   begin
-    name = parse_json(request.body.read)["name"]
+    name = Json.parse(request.body.read)["name"]
     Services::Users.save(name)
     status 201
   rescue Exceptions::ClientException => error
@@ -25,14 +28,14 @@ get '/users' do
   json users
 end
 
-module JsonParser
-  def parse_json(input)
-    JSON.parse(input)
-  rescue JSON::ParserError => error
-    raise Exceptions::ClientException.new(
-      "Error while parsing JSON: " + error.message
-    )
-  end
+post '/kitchen_points' do
+  kitchen_points = Parsers::KitchenPoints.parse(request.body.read)
+  Services::KitchenPoints.save(kitchen_points)
+  status 201
+  #TODO: errors - parsing keys
+  #TODO: errors - validity of keys
+  #TODO: errors - validity of values
+  #TODO: errors - user ID exists?
 end
 
-helpers JsonParser
+helpers Parsers::Json
