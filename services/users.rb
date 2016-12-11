@@ -1,8 +1,9 @@
 require 'database/config'
+require 'exceptions'
 
 module Services
   module Users
-    class ClientException < Exception
+    class ClientException < Exceptions::ClientException
     end
 
     USERS_DB = DB[:users]
