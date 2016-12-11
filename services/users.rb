@@ -14,5 +14,9 @@ module Services
     rescue Sequel::UniqueConstraintViolation
       raise ClientException.new("Duplicate name #{name}")
     end
+
+    def self.get_all
+      USERS_DB.all
+    end
   end
 end

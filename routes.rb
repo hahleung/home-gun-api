@@ -19,6 +19,12 @@ post '/users' do
   end
 end
 
+get '/users' do
+  users = Services::Users.get_all
+  status 200
+  json users
+end
+
 module JsonParser
   def parse_json(input)
     JSON.parse(input)
