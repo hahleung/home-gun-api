@@ -10,4 +10,6 @@ gem 'sinatra-contrib'
 
 group :development, :test do
   gem 'pry'
+  gem 'minitest'
+  gem 'rest-client'
 end
